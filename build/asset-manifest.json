@@ -1,19 +1,19 @@
 {
   "files": {
-    "main.js": "/static/js/main.a0a4a592.chunk.js",
-    "main.js.map": "/static/js/main.a0a4a592.chunk.js.map",
-    "runtime-main.js": "/static/js/runtime-main.fb877d2b.js",
-    "runtime-main.js.map": "/static/js/runtime-main.fb877d2b.js.map",
-    "static/js/2.caa523f8.chunk.js": "/static/js/2.caa523f8.chunk.js",
-    "static/js/2.caa523f8.chunk.js.map": "/static/js/2.caa523f8.chunk.js.map",
-    "index.html": "/index.html",
-    "precache-manifest.df2481726db79ea755a447de2446fe71.js": "/precache-manifest.df2481726db79ea755a447de2446fe71.js",
-    "service-worker.js": "/service-worker.js",
-    "static/js/2.caa523f8.chunk.js.LICENSE": "/static/js/2.caa523f8.chunk.js.LICENSE"
+    "main.js": "tic-tac-toe/build/static/js/main.2223713d.chunk.js",
+    "main.js.map": "tic-tac-toe/build/static/js/main.2223713d.chunk.js.map",
+    "runtime-main.js": "tic-tac-toe/build/static/js/runtime-main.78abd2ef.js",
+    "runtime-main.js.map": "tic-tac-toe/build/static/js/runtime-main.78abd2ef.js.map",
+    "static/js/2.caa523f8.chunk.js": "tic-tac-toe/build/static/js/2.caa523f8.chunk.js",
+    "static/js/2.caa523f8.chunk.js.map": "tic-tac-toe/build/static/js/2.caa523f8.chunk.js.map",
+    "index.html": "tic-tac-toe/build/index.html",
+    "precache-manifest.87308bea4480a3a529c3e2bd73cf1721.js": "tic-tac-toe/build/precache-manifest.87308bea4480a3a529c3e2bd73cf1721.js",
+    "service-worker.js": "tic-tac-toe/build/service-worker.js",
+    "static/js/2.caa523f8.chunk.js.LICENSE": "tic-tac-toe/build/static/js/2.caa523f8.chunk.js.LICENSE"
   },
   "entrypoints": [
-    "static/js/runtime-main.fb877d2b.js",
+    "static/js/runtime-main.78abd2ef.js",
     "static/js/2.caa523f8.chunk.js",
-    "static/js/main.a0a4a592.chunk.js"
+    "static/js/main.2223713d.chunk.js"
   ]
 }
