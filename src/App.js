@@ -1,26 +1,45 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, {PureComponent} from 'react';
+import {withStyles} from '@material-ui/core/styles';
+import Footer from "./components/Footer"
+import Header from "./components/Header"
+import Board from "./components/Board"
+import Start from "./components/Start"
+import PropTypes from "prop-types";
+import {connect} from "react-redux";
+// import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+const styles = {
+    root: {
+        display: 'flex',
+        flexDirection: 'column',
+        minHeight: '100vh'
+    }
+};
+
+class App extends PureComponent {
+    render() {
+        return (
+            // <BrowserRouter>
+            <div className={this.props.classes.root}>
+                <Header/>
+                {this.props.startGame
+                    ? <Board />
+                    : <Start />
+                }
+                <Footer/>
+            </div>
+            // </BrowserRouter>
+        );
+    }
 }
 
-export default App;
+App.propTypes = {
+    classes: PropTypes.object.isRequired,
+};
+
+const StyledApp = withStyles(styles)(App);
+export default connect(
+    state => ({
+        startGame: state.gameStatus.startGame
+    })
+)(StyledApp);
