@@ -6,7 +6,8 @@ const initialState = {
     gameOver: false,
     winner: null,
     wonLine: null,
-    startGame: false
+    startGame: false,
+    boardIsEmpty: true
 };
 const winLines = (() => {
     function* range(start, end, step = 1) {
@@ -67,6 +68,7 @@ const gameStatus = (state = initialState, action) => {
             break;
         default:
     }
+    state.boardIsEmpty = !Object.keys(state.matrix).length;
     return state;
 };
 

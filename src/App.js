@@ -1,45 +1,32 @@
-import React, {PureComponent} from 'react';
-import {withStyles} from '@material-ui/core/styles';
+import React from 'react';
+import {makeStyles} from '@material-ui/core/styles';
 import Footer from "./components/Footer"
 import Header from "./components/Header"
-import Board from "./components/Board"
-import Start from "./components/Start"
-import PropTypes from "prop-types";
-import {connect} from "react-redux";
+import Center from "./components/Center"
+import CssBaseline from "@material-ui/core/CssBaseline";
 // import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
-const styles = {
+const styles = makeStyles({
     root: {
         display: 'flex',
         flexDirection: 'column',
         minHeight: '100vh'
     }
-};
+});
 
-class App extends PureComponent {
-    render() {
-        return (
-            // <BrowserRouter>
-            <div className={this.props.classes.root}>
+const App = () => {
+    return (
+        // <BrowserRouter>
+        <>
+            <CssBaseline/>
+            <div className={styles().root}>
                 <Header/>
-                {this.props.startGame
-                    ? <Board />
-                    : <Start />
-                }
+                <Center/>
                 <Footer/>
             </div>
-            // </BrowserRouter>
-        );
-    }
-}
-
-App.propTypes = {
-    classes: PropTypes.object.isRequired,
+        </>
+        // </BrowserRouter>
+    );
 };
 
-const StyledApp = withStyles(styles)(App);
-export default connect(
-    state => ({
-        startGame: state.gameStatus.startGame
-    })
-)(StyledApp);
+export default App;
