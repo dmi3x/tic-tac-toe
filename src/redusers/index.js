@@ -71,9 +71,9 @@ const selectedMode = (state = null, action) => {
     return state;
 };
 
-const selectedSymbol = (state = 'X', action) => {
-    if (action.type === 'SELECT_SYMBOL') {
-        state = action.symbol === 'X' ? 'X' : 'O';
+const selectedPlayer = (state = 'X', action) => {
+    if (action.type === 'SELECT_PLAYER') {
+        state = action.player === 'X' ? 'X' : 'O';
     }
     return state;
 };
@@ -81,5 +81,5 @@ const selectedSymbol = (state = 'X', action) => {
 export default combineReducers({
     gameStatus,
     selectedMode,
-    selectedSymbol
+    selectedPlayer
 })

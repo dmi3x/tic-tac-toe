@@ -70,6 +70,7 @@ const aiTurn = (props) => {
 };
 
 class Board extends Component {
+
     getValue = (index) => {
         return this.props.matrix[index] || '';
     };
@@ -87,35 +88,53 @@ class Board extends Component {
         return true;
     };
 
+    componentDidMount() {
+        const {nextPlayer, playerSymbol} = this.props;
+        if (nextPlayer !== playerSymbol) {
+            aiTurn(this.props);
+        }
+    };
+
     getGameInfo = () => {
         const {gameMode, playerSymbol, gameOver, winner, nextPlayer} = this.props;
-        let gameOverInfo, turnInfo;
+        let gameOverInfo, gameOverColor = 'textPrimary', turnInfo;
         if (gameOver) {
             if (winner) {
                 if (gameMode === 'SINGLE') {
-                    gameOverInfo = (winner===playerSymbol ? 'You won!' : 'Computer won!')
+                    gameOverInfo = (winner === playerSymbol ? 'You won!' : 'Computer won!')
                 } else {
                     gameOverInfo = `Player ${winner === 'X' ? 1 : 2} wins!`;
                 }
+                gameOverColor = (winner === 'X' ? 'primary' : 'secondary');
             } else {
                 gameOverInfo = 'Draw'
             }
         } else {
             turnInfo = gameMode === 'SINGLE' ? 'Your turn' : `Player ${nextPlayer === 'X' ? 1 : 2} to move`;
         }
-        return {gameOverInfo, turnInfo}
+        return {gameOverInfo, gameOverColor, turnInfo}
+    };
+
+    getCellMode = (isGameOver, wonLine, index) => {
+        if (isGameOver) {
+            if (wonLine && wonLine.includes(index)) {
+                return 'selected';
+            } else {
+                return 'disabled';
+            }
+        }
+        return null;
     };
 
     render() {
-        const {classes, gameOver, winner, wonLine} = this.props;
-        const {gameOverInfo, turnInfo} = this.getGameInfo();
+        const {classes, gameOver, wonLine} = this.props;
+        const {gameOverInfo, gameOverColor, turnInfo} = this.getGameInfo();
         return (
             <main>
                 <div className={classes.title}>
                     <Container maxWidth="sm">
                         {gameOver
-                            ? <Typography component="h1" variant="h2" align="center"
-                                          color={winner ? (winner === 'X' ? 'primary' : 'secondary') : 'textPrimary'}>
+                            ? <Typography component="h1" variant="h2" align="center" color={gameOverColor}>
                                 {gameOverInfo}
                             </Typography>
                             : <Typography variant="h5" align="center" color="textSecondary" className={classes.player}>
@@ -131,9 +150,8 @@ class Board extends Component {
                                 <Cell key={index}
                                       index={index}
                                       value={this.getValue(index)}
-                                      wonLine={wonLine}
-                                      gameOver={gameOver}
-                                      onMakeMove={this.onMakeMove.bind(this)}/>
+                                      mode={this.getCellMode(gameOver, wonLine, index)}
+                                      onMakeMove={this.onMakeMove}/>
                             ))}
                         </GridList>
                     </Grid>
@@ -156,7 +174,7 @@ export default connect(
         gameOver: state.gameStatus.gameOver,
         winner: state.gameStatus.winner,
         gameMode: state.selectedMode,
-        playerSymbol: state.selectedSymbol
+        playerSymbol: state.selectedPlayer
     }),
     ({
         onMakeMove: (index) => ({type: 'MAKE_MOVE', index})

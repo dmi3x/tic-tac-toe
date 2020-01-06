@@ -21,33 +21,28 @@ const styles = makeStyles(theme => ({
 
 const Cell = (props) => {
 
+    const {mode, value, index} = props,
+        className = styles().cell,
+        colorMap = {
+            X: 'primary',
+            O: 'secondary'
+        };
+
     const makeMove = (e) => {
-        //todo: block board if turm of other player
-        if (props.gameOver) {
-            e.preventDefault();
-        } else if (props.value) {
+        if (mode === 'selected' || mode === 'disabled') {
             e.preventDefault();
         } else {
-            props.onMakeMove(props.index);
+            props.onMakeMove(index);
         }
     };
 
-    const className = styles().cell;
-    const value = props.value;
-    const colorMap = {
-        X: 'primary',
-        O: 'secondary'
-    };
-    let disabled = false;
-    let variant = 'outlined';
-    if (props.gameOver) {
-        if (props.wonLine && props.wonLine.includes(props.index)) {
-            variant = 'contained';
-        } else {
-            disabled = true;
-        }
+    let disabled = false,
+        variant = 'outlined';
+    if (mode === 'selected') {
+        variant = 'contained';
+    } else if (mode === 'disabled') {
+        disabled = true;
     }
-
     return (
         <GridListTile>
             <Button variant={variant} color={colorMap[value] || 'default'}
@@ -61,4 +56,4 @@ const Cell = (props) => {
 };
 
 //IMPORTANT! onlyUpdateForKeys filters props.style from material-ui
-export default onlyUpdateForKeys(['value','gameOver'])(Cell);
+export default onlyUpdateForKeys(['value', 'mode'])(Cell);
