@@ -1,4 +1,5 @@
 import {combineReducers} from "redux";
+import {allLines} from "../config/index.js";
 
 const initialState = {
     matrix: {},
@@ -9,19 +10,8 @@ const initialState = {
     startGame: false,
     boardIsEmpty: true
 };
-const winLines = (() => {
-    function* range(start, end, step = 1) {
-        for (let i = start; i <= end; i = i + step) yield i;
-    }
-    return [
-        ...[0, 3, 6].map(i => [...range(i, i + 2)]),
-        ...[0, 1, 2].map(i => [...range(i, 8, 3)]),
-        [0, 4, 8],
-        [2, 4, 6]
-    ]
-})();
 const checkWin = (state) => {
-    for (const line of winLines) {
+    for (const line of allLines) {
         let prevValue, currentValue;
         for (const index of line) {
             currentValue = state.matrix[index];
@@ -72,7 +62,7 @@ const gameStatus = (state = initialState, action) => {
     return state;
 };
 
-const selectMode = (state = null, action) => {
+const selectedMode = (state = null, action) => {
     if (action.type === 'SELECT_MODE') {
         state = action.mode;
     } else if (action.type === 'RESTART_GAME') {
@@ -81,7 +71,15 @@ const selectMode = (state = null, action) => {
     return state;
 };
 
+const selectedSymbol = (state = 'X', action) => {
+    if (action.type === 'SELECT_SYMBOL') {
+        state = action.symbol === 'X' ? 'X' : 'O';
+    }
+    return state;
+};
+
 export default combineReducers({
     gameStatus,
-    selectMode
+    selectedMode,
+    selectedSymbol
 })

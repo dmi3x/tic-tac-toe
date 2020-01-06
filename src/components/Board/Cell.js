@@ -2,7 +2,6 @@ import React from "react";
 import Button from "@material-ui/core/Button";
 import GridListTile from "@material-ui/core/GridListTile";
 import {makeStyles} from "@material-ui/core/styles";
-import {connect} from "react-redux";
 import onlyUpdateForKeys from 'recompose/onlyUpdateForKeys';
 
 const styles = makeStyles(theme => ({
@@ -23,6 +22,7 @@ const styles = makeStyles(theme => ({
 const Cell = (props) => {
 
     const makeMove = (e) => {
+        //todo: block board if turm of other player
         if (props.gameOver) {
             e.preventDefault();
         } else if (props.value) {
@@ -47,6 +47,7 @@ const Cell = (props) => {
             disabled = true;
         }
     }
+
     return (
         <GridListTile>
             <Button variant={variant} color={colorMap[value] || 'default'}
@@ -59,8 +60,5 @@ const Cell = (props) => {
     )
 };
 
-//filter props.style from material-ui
-const fixedCell = onlyUpdateForKeys(['value','gameOver'])(Cell);
-export default connect(null, ({
-    onMakeMove: (index) => ({ type: 'MAKE_MOVE', index })
-}))(fixedCell);
+//IMPORTANT! onlyUpdateForKeys filters props.style from material-ui
+export default onlyUpdateForKeys(['value','gameOver'])(Cell);

@@ -21,15 +21,15 @@ const styles = makeStyles(theme => ({
 
 const Start = (props) => {
     const onSelectSingleMode = () => {
-        props.selectMode('SINGLE');
+        props.selectedMode('SINGLE');
         props.startGame();
     };
     const onSelectDoubleMode = () => {
-        props.selectMode('DOUBLE');
+        props.selectedMode('DOUBLE');
         props.startGame();
     };
     const onSelectOnlineMode = () => {
-        props.selectMode('ONLINE');
+        props.selectedMode('ONLINE');
         props.startGame();
     };
 
@@ -42,7 +42,7 @@ const Start = (props) => {
             <Typography variant="h5" align="center" color="textSecondary">
                 <Grid container spacing={2} justify="center" direction="column">
                     <Grid item>
-                        <Fab variant="extended" disabled={true} color="primary" className={classes.margin}
+                        <Fab variant="extended" color="primary" className={classes.margin}
                              onClick={onSelectSingleMode}>
                             <ComputerIcon className={classes.extendedIcon} />
                             1 Player
