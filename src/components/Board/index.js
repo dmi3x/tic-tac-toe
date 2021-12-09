@@ -7,7 +7,7 @@ import Grid from "@material-ui/core/Grid";
 import GridList from "@material-ui/core/GridList";
 import Typography from "@material-ui/core/Typography";
 import Cell from "./Cell";
-import {allLines} from "../../config/index.js";
+import {allLines} from "../../config";
 
 const styles = theme => ({
     cardGrid: {

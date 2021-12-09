@@ -29,7 +29,7 @@ const Cell = (props) => {
         };
 
     const makeMove = (e) => {
-        if (mode === 'selected' || mode === 'disabled') {
+        if (value || mode === 'selected' || mode === 'disabled') {
             e.preventDefault();
         } else {
             props.onMakeMove(index);
