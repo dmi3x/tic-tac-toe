@@ -33,7 +33,7 @@ const ModeDialog = (props) => {
                 Select Mode
             </Typography>
             <Typography variant="h5" align="center" color="textSecondary">
-                <Grid container spacing={2} justify="center" direction="column">
+                <Grid container spacing={2} justifyContent="center" direction="column">
                     <Grid item>
                         <Fab variant="extended" color="primary" className={classes.margin}
                              onClick={onSelectSingleMode}>

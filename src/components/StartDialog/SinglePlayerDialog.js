@@ -28,7 +28,7 @@ const SinglePlayerDialog = (props) => {
                 Select Player
             </Typography>
             <Typography variant="h5" align="center" color="textSecondary">
-                <Grid container spacing={2} justify="center" direction="column">
+                <Grid container spacing={2} justifyContent="center" direction="column">
                     <Grid item>
                         <Button variant="outlined" color="primary" className={className}
                                 onClick={() => selectPlayer('X')}>X</Button>

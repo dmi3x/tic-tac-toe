@@ -1,8 +1,7 @@
 import React from "react";
 import Button from "@material-ui/core/Button";
-import GridListTile from "@material-ui/core/GridListTile";
+import ImageListItem from "@material-ui/core/ImageListItem";
 import {makeStyles} from "@material-ui/core/styles";
-import onlyUpdateForKeys from 'recompose/onlyUpdateForKeys';
 
 const styles = makeStyles(theme => ({
     cell: {
@@ -44,16 +43,19 @@ const Cell = (props) => {
         disabled = true;
     }
     return (
-        <GridListTile>
+        <ImageListItem>
             <Button variant={variant} color={colorMap[value] || 'default'}
                     onClick={makeMove}
                     disabled={disabled}
                     className={className}>
                 {value}
             </Button>
-        </GridListTile>
+        </ImageListItem>
     )
 };
 
-//IMPORTANT! onlyUpdateForKeys filters props.style from material-ui
-export default onlyUpdateForKeys(['value', 'mode'])(Cell);
+//IMPORTANT! filters props.style from material-ui
+export default React.memo(Cell, (prevProps, nextProps) => {
+    return prevProps.value === nextProps.value &&
+        prevProps.mode === nextProps.mode
+});

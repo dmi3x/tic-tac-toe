@@ -4,7 +4,7 @@ import {withStyles} from "@material-ui/core/styles";
 import PropTypes from "prop-types";
 import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
-import GridList from "@material-ui/core/GridList";
+import ImageList from '@material-ui/core/ImageList'
 import Typography from "@material-ui/core/Typography";
 import Cell from "./Cell";
 import {allLines} from "../../config";
@@ -144,8 +144,8 @@ class Board extends Component {
                     </Container>
                 </div>
                 <Container className={classes.cardGrid} maxWidth="md">
-                    <Grid container spacing={0} direction="column" alignItems="center" justify="center">
-                        <GridList cellHeight="auto" cols={3} className={classes.grid}>
+                    <Grid container spacing={0} direction="column" alignItems="center" justifyContent="center">
+                        <ImageList rowHeight="auto" cols={3} className={classes.grid}>
                             {[...Array(9).keys()].map(index => (
                                 <Cell key={index}
                                       index={index}
@@ -153,7 +153,7 @@ class Board extends Component {
                                       mode={this.getCellMode(gameOver, wonLine, index)}
                                       onMakeMove={this.onMakeMove}/>
                             ))}
-                        </GridList>
+                        </ImageList>
                     </Grid>
                 </Container>
             </main>
