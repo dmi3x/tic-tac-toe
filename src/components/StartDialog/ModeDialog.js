@@ -1,20 +1,10 @@
 import React from "react";
-import Typography from "@material-ui/core/Typography";
-import Grid from "@material-ui/core/Grid";
-import Fab from "@material-ui/core/Fab";
-import ComputerIcon from "@material-ui/icons/Computer";
-import PeopleIcon from "@material-ui/icons/People";
-import WifiIcon from "@material-ui/icons/Wifi";
-import {makeStyles} from "@material-ui/core/styles";
-
-const styles = makeStyles(theme => ({
-    margin: {
-        margin: theme.spacing(1),
-    },
-    extendedIcon: {
-        marginRight: theme.spacing(1),
-    }
-}));
+import Typography from "@mui/material/Typography";
+import Grid from "@mui/material/Grid";
+import Fab from "@mui/material/Fab";
+import ComputerIcon from "@mui/icons-material/Computer";
+import PeopleIcon from "@mui/icons-material/People";
+import WifiIcon from "@mui/icons-material/Wifi";
 
 const ModeDialog = (props) => {
     const onSelectSingleMode = () => {
@@ -26,39 +16,39 @@ const ModeDialog = (props) => {
     const onSelectOnlineMode = () => {
         props.selectMode('ONLINE');
     };
-    const classes = styles();
+
     return (
         <>
-            <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
+            <Typography component="h1" variant="h2" align="center" color="text.primary" gutterBottom>
                 Select Mode
             </Typography>
-            <Typography variant="h5" align="center" color="textSecondary">
+            <Typography variant="h5" align="center" color="text.secondary" component="div">
                 <Grid container spacing={2} justifyContent="center" direction="column">
                     <Grid item>
-                        <Fab variant="extended" color="primary" className={classes.margin}
+                        <Fab variant="extended" color="primary" sx={{ m: 1 }}
                              onClick={onSelectSingleMode}>
-                            <ComputerIcon className={classes.extendedIcon}/>
+                            <ComputerIcon sx={{ mr: 1 }} />
                             1 Player
                         </Fab>
                     </Grid>
                     <Grid item>
-                        <Fab variant="extended" color="primary" className={classes.margin}
+                        <Fab variant="extended" color="primary" sx={{ m: 1 }}
                              onClick={onSelectDoubleMode}>
-                            <PeopleIcon className={classes.extendedIcon}/>
+                            <PeopleIcon sx={{ mr: 1 }} />
                             2 Players
                         </Fab>
                     </Grid>
                     <Grid item>
-                        <Fab variant="extended" disabled={true} color="primary" className={classes.margin}
+                        <Fab variant="extended" disabled={true} color="primary" sx={{ m: 1 }}
                              onClick={onSelectOnlineMode}>
-                            <WifiIcon className={classes.extendedIcon}/>
+                            <WifiIcon sx={{ mr: 1 }} />
                             Play Online
                         </Fab>
                     </Grid>
                 </Grid>
             </Typography>
         </>
-    )
+    );
 };
 
-export default ModeDialog
+export default ModeDialog;

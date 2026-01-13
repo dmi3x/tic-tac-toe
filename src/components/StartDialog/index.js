@@ -1,15 +1,15 @@
 import React from "react";
-import Container from "@material-ui/core/Container";
-import {connect} from "react-redux";
+import Container from "@mui/material/Container";
+import { connect } from "react-redux";
 import SinglePlayerDialog from "./SinglePlayerDialog";
 import ModeDialog from "./ModeDialog";
 import * as actions from "../../actions/start";
 
 const Start = (props) => {
-    const {mode, isGameStarted} = props;
-    const selectMode = (mode) => {
-        props.selectMode(mode);
-        if (mode==='DOUBLE') {
+    const { mode, isGameStarted } = props;
+    const selectMode = (selectedMode) => {
+        props.selectMode(selectedMode);
+        if (selectedMode === 'DOUBLE') {
             props.startGame();
         }
     };
@@ -19,12 +19,12 @@ const Start = (props) => {
     };
     return (
         <Container maxWidth="sm">
-            {mode==='SINGLE' && !isGameStarted
-                ? <SinglePlayerDialog selectPlayer={selectPlayer}/>
-                : <ModeDialog selectMode={selectMode}/>
+            {mode === 'SINGLE' && !isGameStarted
+                ? <SinglePlayerDialog selectPlayer={selectPlayer} />
+                : <ModeDialog selectMode={selectMode} />
             }
         </Container>
-    )
+    );
 };
 
 export default connect(
