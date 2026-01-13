@@ -9,7 +9,7 @@
 /coverage
 
 # production
-/build
+# /build - commented out to allow GitHub Pages to serve the build folder
 
 # misc
 .DS_Store

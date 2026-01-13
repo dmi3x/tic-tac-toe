@@ -1,10 +1,10 @@
 import React from "react";
 import Board from "./Board";
 import StartDialog from "./StartDialog";
-import {connect} from "react-redux";
+import { connect } from "react-redux";
 
-const Center = props => {
-    return props.startGame ? <Board /> : <StartDialog />
+const Center = (props) => {
+    return props.startGame ? <Board /> : <StartDialog />;
 };
 
 export default connect(

@@ -1,24 +1,27 @@
 import React from "react";
-import Container from "@material-ui/core/Container";
-import Typography from "@material-ui/core/Typography";
-import Link from "@material-ui/core/Link";
-import {makeStyles} from "@material-ui/core/styles";
-
-const styles = makeStyles(theme => ({
-    footer: {
-        padding: theme.spacing(3, 2),
-        marginTop: 'auto',
-        textAlign: 'center',
-        backgroundColor: theme.palette.type === 'dark' ? theme.palette.grey[800] : theme.palette.grey[200],
-    }
-}));
+import Box from "@mui/material/Box";
+import Container from "@mui/material/Container";
+import Typography from "@mui/material/Typography";
+import Link from "@mui/material/Link";
 
 const Footer = () => {
     return (
-        <footer className={styles().footer}>
+        <Box
+            component="footer"
+            sx={{
+                py: 3,
+                px: 2,
+                mt: 'auto',
+                textAlign: 'center',
+                backgroundColor: (theme) =>
+                    theme.palette.mode === 'dark'
+                        ? theme.palette.grey[800]
+                        : theme.palette.grey[200],
+            }}
+        >
             <Container maxWidth="sm">
                 <Typography variant="body1">This is my first React application!</Typography>
-                <Typography variant="body2" color="textSecondary">
+                <Typography variant="body2" color="text.secondary">
                     {'Copyright © '}
                     <Link target="_blank" rel="noopener" color="inherit" href="https://www.linkedin.com/in/d-nevolin/">
                         Dmitriy Nevolin
@@ -27,8 +30,8 @@ const Footer = () => {
                     {'.'}
                 </Typography>
             </Container>
-        </footer>
-    )
+        </Box>
+    );
 };
 
-export default Footer
+export default Footer;

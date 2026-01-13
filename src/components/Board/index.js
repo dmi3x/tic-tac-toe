@@ -1,30 +1,12 @@
-import React, {Component} from "react";
-import {connect} from "react-redux";
-import {withStyles} from "@material-ui/core/styles";
-import PropTypes from "prop-types";
-import Container from "@material-ui/core/Container";
-import Grid from "@material-ui/core/Grid";
-import ImageList from '@material-ui/core/ImageList'
-import Typography from "@material-ui/core/Typography";
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import Box from "@mui/material/Box";
+import Container from "@mui/material/Container";
+import Grid from "@mui/material/Grid";
+import ImageList from "@mui/material/ImageList";
+import Typography from "@mui/material/Typography";
 import Cell from "./Cell";
-import {allLines} from "../../config";
-
-const styles = theme => ({
-    cardGrid: {
-        paddingTop: theme.spacing(3),
-        paddingBottom: theme.spacing(3),
-    },
-    grid: {
-        width: 300
-    },
-    title: {
-        backgroundColor: theme.palette.background.paper,
-        padding: theme.spacing(1, 0, 1),
-    },
-    player: {
-        padding: theme.spacing(2),
-    }
-});
+import { allLines } from "../../config";
 
 const calcBestTurn = (lines, matrix, currentPlayer) => {
     //const centerIndex = 4;
@@ -127,25 +109,25 @@ class Board extends Component {
     };
 
     render() {
-        const {classes, gameOver, wonLine} = this.props;
-        const {gameOverInfo, gameOverColor, turnInfo} = this.getGameInfo();
+        const { gameOver, wonLine } = this.props;
+        const { gameOverInfo, gameOverColor, turnInfo } = this.getGameInfo();
         return (
-            <main>
-                <div className={classes.title}>
+            <Box component="main">
+                <Box sx={{ backgroundColor: 'background.paper', py: 1 }}>
                     <Container maxWidth="sm">
                         {gameOver
                             ? <Typography component="h1" variant="h2" align="center" color={gameOverColor}>
                                 {gameOverInfo}
                             </Typography>
-                            : <Typography variant="h5" align="center" color="textSecondary" className={classes.player}>
+                            : <Typography variant="h5" align="center" color="text.secondary" sx={{ p: 2 }}>
                                 {turnInfo}
                             </Typography>
                         }
                     </Container>
-                </div>
-                <Container className={classes.cardGrid} maxWidth="md">
+                </Box>
+                <Container sx={{ py: 3 }} maxWidth="md">
                     <Grid container spacing={0} direction="column" alignItems="center" justifyContent="center">
-                        <ImageList rowHeight="auto" cols={3} className={classes.grid}>
+                        <ImageList cols={3} sx={{ width: 300 }}>
                             {[...Array(9).keys()].map(index => (
                                 <Cell key={index}
                                       index={index}
@@ -156,16 +138,11 @@ class Board extends Component {
                         </ImageList>
                     </Grid>
                 </Container>
-            </main>
-        )
+            </Box>
+        );
     }
 }
 
-Board.propTypes = {
-    classes: PropTypes.object.isRequired,
-};
-
-const StyledBoard = withStyles(styles)(Board);
 export default connect(
     state => ({
         matrix: state.gameStatus.matrix,
@@ -179,4 +156,4 @@ export default connect(
     ({
         onMakeMove: (index) => ({type: 'MAKE_MOVE', index})
     })
-)(StyledBoard);
+)(Board);
