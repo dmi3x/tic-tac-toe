@@ -127,7 +127,7 @@ class Board extends Component {
                 </Box>
                 <Container sx={{ py: 3 }} maxWidth="md">
                     <Grid container spacing={0} direction="column" alignItems="center" justifyContent="center">
-                        <ImageList cols={3} sx={{ width: 300 }}>
+                        <ImageList cols={3} gap={0} sx={{ width: 300 }}>
                             {[...Array(9).keys()].map(index => (
                                 <Cell key={index}
                                       index={index}

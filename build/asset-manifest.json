@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.js": "/tic-tac-toe/build/static/js/main.695dc84c.js",
+    "main.js": "/tic-tac-toe/build/static/js/main.71a4a876.js",
     "index.html": "/tic-tac-toe/build/index.html",
-    "main.695dc84c.js.map": "/tic-tac-toe/build/static/js/main.695dc84c.js.map"
+    "main.71a4a876.js.map": "/tic-tac-toe/build/static/js/main.71a4a876.js.map"
   },
   "entrypoints": [
-    "static/js/main.695dc84c.js"
+    "static/js/main.71a4a876.js"
   ]
 }
